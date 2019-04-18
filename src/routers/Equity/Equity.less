@@ -1,0 +1,101 @@
+.card-image(@url){
+    background-size: 100% 100%;
+    background-repeat:no-repeat; 
+    background-image: url("../../img/equity/@{url}@2x.png");
+    @media(-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3){
+      background-image: url("../../img/equity/@{url}@3x.png")
+    }
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card {
+        width: 690px;
+        height: 360px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        .card-image('card')
+    }
+    .equity {
+        width: 690px;
+        .equity-title {
+            display: flex;
+            .title-block {
+                width: 8px;
+                height:38px;
+                background-color: #C8A167;
+            }
+            .title-text {
+                height:38px;
+                margin-left: 12px;
+                margin-bottom: 40px;
+                font-size:30px;
+                font-family:Helvetica;
+                color:rgba(51,51,51,1);
+                line-height:38px;
+            }
+        }
+        .equity-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 0 60px;
+            .equity-item {
+                width: 25%;
+                margin-bottom: 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .item-icon {
+                    width: 84px;
+                    height: 84px;
+                    border:1px solid #E2CCA1;
+                    border-radius: 50% 50%;
+                }
+               .item-title {
+                    height:38px;
+                    margin-top: 10px;
+                    margin-bottom: 8px;
+                    font-size:28px;
+                    font-family:PingFangSC-Regular;
+                    font-weight:400;
+                    color:rgba(51,51,51,1);
+                    line-height:38px;
+               } 
+               .item-des {
+                    height:32px;
+                    font-size:22px;
+                    font-family:PingFangSC-Regular;
+                    font-weight:400;
+                    color:rgba(178,178,178,1);
+                    line-height:32px;
+               }
+            }
+        }
+    }
+}
+.icon-size {
+
+}
+.icon-image(@className,@url) {
+    .item-icon-@{className}{
+        background-size: 100%, 100%;
+        background-repeat: no-repeat;
+        background-image: url("../../img/equity/@{url}@2x.png");
+        @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+            background-image: url("../../img/equity/@{url}@3x.png");
+        
+          }
+    }
+}
+
+@iconList:guarantee,loan,customerService,scenicSpot,more,gift,diamonds;
+.loop(@i) when (@i < length(@iconList)+1){
+    .icon-image(extract(@iconList, @i),extract(@iconList, @i));
+    .loop(@i+1);
+}
+
+.loop(1);
